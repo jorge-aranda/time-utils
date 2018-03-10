@@ -1,0 +1,43 @@
+
+allprojects {
+    group = 'es.jaranda.time-utils'
+    version = '0.1.0-SNAPSHOT'
+
+    ext {
+        commonsLangVersion = '3.7'
+
+        spockVersion = '1.1-groovy-2.4'
+        objenesisVersion = '2.2'
+        cglibVersion = '3.2.0'
+        groovyVersion = '2.4.5'
+    }
+}
+
+subprojects {
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+    sourceCompatibility = 1.8
+    
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // Commons-lang
+        compile("org.apache.commons:commons-lang3:${commonsLangVersion}")
+    }
+}
+
+description = 'Library to works better with time in Java. This is base module.'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.5.1'
+    distributionUrl = distributionUrl.replace("bin", "all")
+}

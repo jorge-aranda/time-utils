@@ -1,0 +1,59 @@
+
+configurations {
+    optional
+    compile.extendsFrom optional
+}
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+// TODO pending to include Kotlin?
+apply plugin: 'groovy'
+
+description = 'An example of using time ranges on time-utils-core library'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    commonsLangVersion = '3.7'
+
+    spockVersion = '1.1-groovy-2.4'
+    objenesisVersion = '2.2'
+    cglibVersion = '3.2.0'
+    groovyVersion = '2.4.5'
+}
+
+dependencies {
+    // Time Utils
+    compile project(':time-utils-core')
+
+    // Spring Boot dependencies
+    compile('org.springframework.boot:spring-boot-starter')
+    optional("org.springframework.boot:spring-boot-configuration-processor")
+    
+    // Project Lombok
+    // compileOnly("org.projectlombok:lombok") // TODO include ???
+
+    // Testing dependencies
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    // Spock
+    testCompile("org.spockframework:spock-core:${spockVersion}")
+    testCompile("org.spockframework:spock-spring:${spockVersion}")
+    testCompile("org.objenesis:objenesis:${objenesisVersion}")
+    testCompile("cglib:cglib-nodep:${cglibVersion}")
+    testCompile("org.codehaus.groovy:groovy-all:${groovyVersion}")
+}

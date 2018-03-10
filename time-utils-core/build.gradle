@@ -1,0 +1,25 @@
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+// TODO pending to include Kotlin?
+apply plugin: 'groovy'
+
+description = 
+    """Library to works better with time in Java. Core module works with
+       JSR-310 or java.time API (Java 8 official API time)
+    """
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spock
+    testCompile("org.spockframework:spock-core:${spockVersion}")
+    testCompile("org.spockframework:spock-spring:${spockVersion}")
+    testCompile("org.objenesis:objenesis:${objenesisVersion}")
+    testCompile("cglib:cglib-nodep:${cglibVersion}")
+    testCompile("org.codehaus.groovy:groovy-all:${groovyVersion}")
+}

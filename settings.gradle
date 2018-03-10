@@ -1,0 +1,5 @@
+
+rootProject.name = 'time-utils-base'
+
+include 'time-utils-core'
+include 'time-range-example'
