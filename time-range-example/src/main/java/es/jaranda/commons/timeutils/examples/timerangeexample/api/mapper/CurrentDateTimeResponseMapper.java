@@ -19,9 +19,9 @@ public class CurrentDateTimeResponseMapper {
     private CurrentDateTimeResponse internalMap(
             final OffsetDateTime offsetDateTime) {
         return CurrentDateTimeResponse.builder()
-                .currentDateTime(offsetDateTime.toString())
-                .currentLocalDate(offsetDateTime.toLocalDate().toString())
-                .currentLocalTime(offsetDateTime.toLocalTime().toString())
+                .currentDateTime(offsetDateTime)
+                .currentLocalDate(offsetDateTime.toLocalDate())
+                .currentLocalTime(offsetDateTime.toLocalTime())
                 .currentMillis(offsetDateTime.toInstant().toEpochMilli())
             .build();
     }
