@@ -16,11 +16,6 @@ public class TimeRangeConfigurationProperties implements TimeRangeContract {
     private Integer endHourOfTimeRange;
     private String appliedTimeZoneOfTimeRange;
 
-//    @PostConstruct
-//    public void init() {
-//        ZoneId.of(appliedTimeZoneOfTimeRange);
-//    }
-
     @Override
     public Integer getStartHourOfTimeRange() {
         return startHourOfTimeRange;
