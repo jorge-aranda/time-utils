@@ -3,7 +3,9 @@ package es.jaranda.commons.timeutils.examples.timerangeexample.api.mapper
 
 import spock.lang.Specification
 
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
@@ -21,11 +23,11 @@ class CurrentDateTimeResponseMapperSpec extends Specification {
         when:
             def response = currentDateTimeResponseMapper.map(offsetDateTime)
         then:
-            response.currentDateTime == "2017-03-11T15:00:10Z"
-            response.currentLocalDate == "2017-03-11"
-            response.currentLocalTime == "15:00:10"
+            response.currentDateTime ==
+                    OffsetDateTime.parse("2017-03-11T15:00:10Z")
+            response.currentLocalDate == LocalDate.parse("2017-03-11")
+            response.currentLocalTime == LocalTime.parse("15:00:10")
             response.currentMillis == 1489244410000
-
     }
 
 }

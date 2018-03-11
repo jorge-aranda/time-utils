@@ -4,13 +4,17 @@ package es.jaranda.commons.timeutils.examples.timerangeexample.api.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+
 @Builder
 @Data
 public class CurrentDateTimeResponse {
-    private final String currentDateTime;
+    private final OffsetDateTime currentDateTime;
 
-    private final String currentLocalDate;
-    private final String currentLocalTime;
+    private final LocalDate currentLocalDate;
+    private final LocalTime currentLocalTime;
 
     private final Long currentMillis;
 }
