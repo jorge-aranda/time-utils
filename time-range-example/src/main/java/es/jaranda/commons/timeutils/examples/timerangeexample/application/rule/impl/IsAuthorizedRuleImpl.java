@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-// TODO make unit test
 @RequiredArgsConstructor
 @Component
 public class IsAuthorizedRuleImpl implements IsAuthorizedRule {
