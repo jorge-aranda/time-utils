@@ -15,6 +15,11 @@ allprojects {
 
 subprojects {
     buildscript {
+        ext {
+            kotlinVersion = '1.2.30'
+            springBootVersion = '2.0.0.RELEASE'
+        }
+
         repositories {
             mavenCentral()
         }
