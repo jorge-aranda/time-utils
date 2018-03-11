@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
-// TODO make unit test
 @RequiredArgsConstructor
 @Component
 public class RetrieveCurrentDateTimeUseCaseImpl
