@@ -16,9 +16,10 @@ repositories {
 }
 
 dependencies {
+    compile("javax.validation:validation-api:1.0.0.GA")
+
     // Spock
     testCompile("org.spockframework:spock-core:${spockVersion}")
-    testCompile("org.spockframework:spock-spring:${spockVersion}")
     testCompile("org.objenesis:objenesis:${objenesisVersion}")
     testCompile("cglib:cglib-nodep:${cglibVersion}")
     testCompile("org.codehaus.groovy:groovy-all:${groovyVersion}")
