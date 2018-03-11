@@ -1,8 +1,14 @@
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-// TODO pending to include Kotlin?
+apply plugin: 'kotlin'
 apply plugin: 'groovy'
+
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+    }
+}
 
 description = 
     """Library to works better with time in Java. Core module works with
@@ -16,9 +22,14 @@ repositories {
 }
 
 dependencies {
+    compile("javax.validation:validation-api:1.0.0.GA")
+
+    // Kotlin
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
+    compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+
     // Spock
     testCompile("org.spockframework:spock-core:${spockVersion}")
-    testCompile("org.spockframework:spock-spring:${spockVersion}")
     testCompile("org.objenesis:objenesis:${objenesisVersion}")
     testCompile("cglib:cglib-nodep:${cglibVersion}")
     testCompile("org.codehaus.groovy:groovy-all:${groovyVersion}")

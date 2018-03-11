@@ -2,3 +2,9 @@
 spring:
   application:
     name: time-range-example
+server.port: 8080
+
+es.jaranda.commons.timeutils.examples.timerangeexample:
+    start-hour-of-time-range: 8
+    end-hour-of-time-range: 18
+    appliedTimeZoneOfTimeRange: 'Europe/Madrid'
