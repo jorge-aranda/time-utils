@@ -3,24 +3,19 @@ package es.jaranda.commons.timeutils.examples.timerangeexample.application.rule.
 
 import es.jaranda.commons.timeutils.application.rule.CurrentLocalTimeIsInsideTimeRangeRule;
 import es.jaranda.commons.timeutils.examples.timerangeexample.application.rule.IsAuthorizedRule;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
 // TODO make unit test
+@RequiredArgsConstructor
 @Component
 public class IsAuthorizedRuleImpl implements IsAuthorizedRule {
 
     private final CurrentLocalTimeIsInsideTimeRangeRule
             currentLocalTimeIsInsideTimeRangeRule;
-
-    public IsAuthorizedRuleImpl(
-            final CurrentLocalTimeIsInsideTimeRangeRule
-                    currentLocalTimeIsInsideTimeRangeRule) {
-        this.currentLocalTimeIsInsideTimeRangeRule =
-                currentLocalTimeIsInsideTimeRangeRule;
-    }
 
     @Override
     public boolean test(final OffsetDateTime offsetDateTime) {

@@ -19,13 +19,12 @@ public class CurrentDateTimeResponseMapper {
 
     private CurrentDateTimeResponse internalMap(
             final OffsetDateTime offsetDateTime) {
-
-        return new CurrentDateTimeResponse(
-                offsetDateTime.toString(),
-                offsetDateTime.toLocalDate().toString(),
-                offsetDateTime.toLocalTime().toString(),
-                offsetDateTime.toInstant().toEpochMilli()
-        );
+        return CurrentDateTimeResponse.builder()
+                .currentDateTime(offsetDateTime.toString())
+                .currentLocalDate(offsetDateTime.toLocalDate().toString())
+                .currentLocalTime(offsetDateTime.toLocalTime().toString())
+                .currentMillis(offsetDateTime.toInstant().toEpochMilli())
+            .build();
     }
 
 }

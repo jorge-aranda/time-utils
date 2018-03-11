@@ -7,6 +7,7 @@ import es.jaranda.commons.timeutils.examples.timerangeexample.api.mapper.ZoneIdM
 import es.jaranda.commons.timeutils.examples.timerangeexample.api.model.CurrentDateTimeResponse;
 import es.jaranda.commons.timeutils.examples.timerangeexample.application.rule.IsAuthorizedRule;
 import es.jaranda.commons.timeutils.examples.timerangeexample.application.usecase.RetrieveCurrentDateTimeUseCase;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,21 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @RequestMapping("/current-date-time")
 @RestController
 public class DateTimeController {
-
-    public DateTimeController(final RetrieveCurrentDateTimeUseCase
-                                      retrieveCurrentDateTimeUseCase,
-                              final IsAuthorizedRule isAuthorizedRule,
-                              final ZoneIdMapper zoneIdMapper,
-                              final CurrentDateTimeResponseMapper
-                                      currentDateTimeResponseMapper) {
-        this.retrieveCurrentDateTimeUseCase = retrieveCurrentDateTimeUseCase;
-        this.isAuthorizedRule = isAuthorizedRule;
-        this.zoneIdMapper = zoneIdMapper;
-        this.currentDateTimeResponseMapper = currentDateTimeResponseMapper;
-    }
 
     private final RetrieveCurrentDateTimeUseCase retrieveCurrentDateTimeUseCase;
     private final IsAuthorizedRule isAuthorizedRule;
@@ -44,7 +34,6 @@ public class DateTimeController {
                 .filter(isAuthorizedRule)
                 .map(currentDateTimeResponseMapper::map)
                 .orElseThrow(OutsizeOfTimeRangeException::new);
-
     }
 
 }
