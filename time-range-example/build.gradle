@@ -42,6 +42,9 @@ dependencies {
 
     // Spring Boot dependencies
     compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
     optional("org.springframework.boot:spring-boot-configuration-processor")
     
     // Project Lombok
