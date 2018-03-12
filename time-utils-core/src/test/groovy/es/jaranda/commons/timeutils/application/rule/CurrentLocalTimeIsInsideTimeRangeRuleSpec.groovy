@@ -105,28 +105,28 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
     def """Should be is inside of range when is same day and is
            min and max hour limit"""() {
         given:
-        final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
-        1 * timeRangeContractMock.startHourOfTimeRange >> 10
-        1 * timeRangeContractMock.endHourOfTimeRange >> 10
-        1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
-                UTC_TIME_ZONE_CODE
+            final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
+            1 * timeRangeContractMock.startHourOfTimeRange >> 10
+            1 * timeRangeContractMock.endHourOfTimeRange >> 10
+            1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
+                    UTC_TIME_ZONE_CODE
         when:
-        def isInsideRange =
-                currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
+            def isInsideRange =
+                    currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
         then:
-        isInsideRange
+            isInsideRange
     }
 
     def """Should be is inside of range when is same day and is
            min hour and max limit"""() {
         given:
-        final def currentInstant = Instant.parse(
-                VALID_ISO_8601_IN_UTC_ZONE_MAX_LIMIT
-        )
-        1 * timeRangeContractMock.startHourOfTimeRange >> 10
-        1 * timeRangeContractMock.endHourOfTimeRange >> 10
-        1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
-                UTC_TIME_ZONE_CODE
+            final def currentInstant = Instant.parse(
+                    VALID_ISO_8601_IN_UTC_ZONE_MAX_LIMIT
+            )
+            1 * timeRangeContractMock.startHourOfTimeRange >> 10
+            1 * timeRangeContractMock.endHourOfTimeRange >> 10
+            1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
+                    UTC_TIME_ZONE_CODE
         when:
             def isInsideRange =
                     currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
