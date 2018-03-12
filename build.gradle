@@ -1,7 +1,7 @@
 
 allprojects {
     group = 'es.jaranda.time-utils'
-    version = '0.1.0.RELEASE'
+    version = '0.1.1-SNAPSHOT'
 
     ext {
         commonsLangVersion = '3.7'
