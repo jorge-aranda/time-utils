@@ -47,8 +47,8 @@ public class CurrentLocalTimeIsInsideTimeRangeRuleImpl
                                           final LocalTime maxLocalTime,
                                           final LocalTime currentLocalTime) {
         return minLocalTime.isAfter(maxLocalTime) &&
-                (!currentLocalTime.isAfter(minLocalTime) ||
-                 !currentLocalTime.isBefore(maxLocalTime));
+                (currentLocalTime.isAfter(minLocalTime) ||
+                 currentLocalTime.isBefore(maxLocalTime));
     }
 
     private boolean isSameDayInterval(final LocalTime minLocalTime,
