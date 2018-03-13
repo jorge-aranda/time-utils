@@ -228,11 +228,11 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
 
     def "Should fail when bad time zone is specified"() {
         given:
-        final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
-        timeRangeContractMock.startHourOfTimeRange >> 8
-        timeRangeContractMock.endHourOfTimeRange >> 11
-        1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
-                BAD_TIME_ZONE_CODE
+            final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
+            timeRangeContractMock.startHourOfTimeRange >> 8
+            timeRangeContractMock.endHourOfTimeRange >> 11
+            1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
+                    BAD_TIME_ZONE_CODE
         when:
             currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
         then:
