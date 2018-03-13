@@ -150,8 +150,23 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
             isInsideRange
     }
 
+    def """Should be outside of range when is same day and is different of same
+           min&max limit"""() {
+        given:
+            final def currentInstant = Instant.parse("2016-04-15T11:00:00Z")
+            1 * timeRangeContractMock.startHourOfTimeRange >> 10
+            1 * timeRangeContractMock.endHourOfTimeRange >> 10
+            1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
+                    UTC_TIME_ZONE_CODE
+        when:
+            def isInsideRange =
+                    currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
+        then:
+            !isInsideRange
+    }
+
     def """Should be is inside of range when is between two days and is
-           before max-limit"""() {
+           before start-hour"""() {
         given:
             final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
             1 * timeRangeContractMock.startHourOfTimeRange >> 22
@@ -166,7 +181,7 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
     }
 
     def """Should be is inside of range when is between two days and is
-           after min-limit"""() {
+           after end-hour"""() {
         given:
             final def currentInstant = Instant.parse(
                     VALID_ISO_8601_IN_UTC_ZONE_LATER
@@ -182,7 +197,7 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
             isInsideRange
     }
 
-    def "Should be outside when is between two days and is between"() {
+    def "Should be outside when range is between two days and is between"() {
         given:
             final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
             1 * timeRangeContractMock.startHourOfTimeRange >> 23
@@ -194,20 +209,6 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
                     currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
         then:
             !isInsideRange
-    }
-
-    def "Should be inside when is between two days and is not between"() {
-        given:
-            final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
-            1 * timeRangeContractMock.startHourOfTimeRange >> 15
-            1 * timeRangeContractMock.endHourOfTimeRange >> 11
-            1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
-                    UTC_TIME_ZONE_CODE
-        when:
-            def isInsideRange =
-                    currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
-        then:
-            isInsideRange
     }
 
     def "Should be outside when is daylight saving and is missing hour of day"() {
@@ -227,11 +228,11 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
 
     def "Should fail when bad time zone is specified"() {
         given:
-        final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
-        timeRangeContractMock.startHourOfTimeRange >> 8
-        timeRangeContractMock.endHourOfTimeRange >> 11
-        1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
-                BAD_TIME_ZONE_CODE
+            final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
+            timeRangeContractMock.startHourOfTimeRange >> 8
+            timeRangeContractMock.endHourOfTimeRange >> 11
+            1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
+                    BAD_TIME_ZONE_CODE
         when:
             currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
         then:
