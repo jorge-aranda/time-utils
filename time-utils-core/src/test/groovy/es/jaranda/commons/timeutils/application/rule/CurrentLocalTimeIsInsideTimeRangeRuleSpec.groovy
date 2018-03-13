@@ -150,6 +150,21 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
             isInsideRange
     }
 
+    def """Should be outside of range when is same day and is different of same
+           min&max limit"""() {
+        given:
+            final def currentInstant = Instant.parse("2016-04-15T11:00:00Z")
+            1 * timeRangeContractMock.startHourOfTimeRange >> 10
+            1 * timeRangeContractMock.endHourOfTimeRange >> 10
+            1 * timeRangeContractMock.appliedTimeZoneForTimeRange >>
+                    UTC_TIME_ZONE_CODE
+        when:
+            def isInsideRange =
+                    currentLocalTimeIsInsideTimeRangeRule.test(currentInstant)
+        then:
+            !isInsideRange
+    }
+
     def """Should be is inside of range when is between two days and is
            before max-limit"""() {
         given:
