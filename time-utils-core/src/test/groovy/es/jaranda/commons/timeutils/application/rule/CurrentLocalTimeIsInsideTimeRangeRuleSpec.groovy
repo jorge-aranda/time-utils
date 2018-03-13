@@ -166,7 +166,7 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
     }
 
     def """Should be is inside of range when is between two days and is
-           before max-limit"""() {
+           before start-hour"""() {
         given:
             final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
             1 * timeRangeContractMock.startHourOfTimeRange >> 22
@@ -181,7 +181,7 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
     }
 
     def """Should be is inside of range when is between two days and is
-           after min-limit"""() {
+           after end-hour"""() {
         given:
             final def currentInstant = Instant.parse(
                     VALID_ISO_8601_IN_UTC_ZONE_LATER
@@ -197,7 +197,7 @@ class CurrentLocalTimeIsInsideTimeRangeRuleSpec extends Specification {
             isInsideRange
     }
 
-    def "Should be outside when is between two days and is between"() {
+    def "Should be outside when range is between two days and is between"() {
         given:
             final def currentInstant = Instant.parse(VALID_ISO_8601_IN_UTC_ZONE)
             1 * timeRangeContractMock.startHourOfTimeRange >> 23
